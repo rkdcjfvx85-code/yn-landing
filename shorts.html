@@ -3,53 +3,46 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>채무조정 30초 영상</title>
+<title>YN 변호사 사무실 · 개인회생 상담 30초 영상</title>
 <style>
-  :root { --navy: #0a1834; --sky: #6ec4ff; }
+  :root { --navy: #0b1f3f; --gold: #c9a45c; --gold-hi: #e2c07a; }
   * { box-sizing: border-box; }
-  html, body { margin: 0; height: 100%; background: #050d1f; font-family: "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; }
+  html, body { margin: 0; height: 100%; background: #050d1f; font-family: "Pretendard", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; }
   body { display: flex; align-items: center; justify-content: center; }
-  /* 9:16 화면 */
+  /* 9:16 화면 — 화면 아무 곳이나 누르면 랜딩페이지로 이동 */
   .frame {
-    position: relative;
-    display: block;
-    height: min(100vh, calc(100vw * 16 / 9));
-    aspect-ratio: 9 / 16;
-    cursor: pointer;
-    background: var(--navy);
-    overflow: hidden;
-    color: inherit;
-    text-decoration: none;
+    position: relative; display: block;
+    height: min(100vh, calc(100vw * 16 / 9)); aspect-ratio: 9 / 16;
+    cursor: pointer; background: var(--navy); overflow: hidden; color: inherit; text-decoration: none;
   }
   video { width: 100%; height: 100%; display: block; object-fit: cover; }
-  /* 소리 켜기 (브라우저는 처음에 소리 없이만 자동재생 허용) */
+  /* 소리 켜기 (브라우저는 처음에 소리 없이만 자동재생을 허용) */
   .sound {
-    position: absolute; top: 14px; right: 14px;
+    position: absolute; top: 14px; right: 14px; z-index: 2;
     border: 0; border-radius: 999px; padding: 8px 14px;
     background: rgba(255,255,255,.16); color: #fff; font: inherit; font-size: 14px; cursor: pointer;
     backdrop-filter: blur(6px);
   }
-  /* 이동 안내 문구: 영상 하단 빈 공간에 하늘색으로 크게 */
-  .hint {
-    position: absolute; left: 50%; bottom: 6%; transform: translateX(-50%);
-    max-width: 92%; padding: 12px 20px; border-radius: 999px;
-    background: var(--sky); color: #08163a;
-    font-size: clamp(14px, 2.2vh, 19px); font-weight: 700; text-align: center; white-space: nowrap;
-    box-shadow: 0 6px 24px rgba(110,196,255,.35);
+  /* 영상 마지막 안내("하단의 버튼")와 같은 위치의 실제 버튼 — 랜딩페이지 버튼과 같은 문구·색 */
+  .cta {
+    position: absolute; left: 50%; bottom: 5.5%; transform: translateX(-50%);
+    width: 84%; padding: 16px 20px; border-radius: 14px;
+    background: linear-gradient(180deg, var(--gold-hi), var(--gold)); color: #0b1a36;
+    font-size: clamp(16px, 2.4vh, 21px); font-weight: 800; text-align: center; white-space: nowrap;
+    box-shadow: 0 10px 28px rgba(201,164,92,.35);
     pointer-events: none;
-    animation: bob 2.4s ease-in-out infinite;
+    animation: breathe 2.4s ease-in-out infinite;
   }
-  @keyframes bob { 0%,100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, -5px); } }
-  @media (prefers-reduced-motion: reduce) { .hint { animation: none; } }
-  .frame:hover .hint, .frame:focus-visible .hint { background: #fff; }
+  @keyframes breathe { 0%,100% { box-shadow: 0 10px 28px rgba(201,164,92,.3); } 50% { box-shadow: 0 10px 36px rgba(226,192,122,.6); } }
+  @media (prefers-reduced-motion: reduce) { .cta { animation: none; } }
+  .frame:hover .cta, .frame:focus-visible .cta { filter: brightness(1.06); }
 </style>
 </head>
 <body>
-  <!-- 화면 아무 곳이나 누르면 같은 사이트의 랜딩페이지로 이동 -->
-  <a class="frame" href="./" aria-label="무료 상담 신청 페이지로 이동">
-    <video id="video" src="shorts/debt-consult-30s.mp4" autoplay muted loop playsinline></video>
+  <a class="frame" href="./?from=shorts" aria-label="무료 상담 신청 페이지로 이동">
+    <video id="video" src="shorts/yn-rehab-30s.mp4" autoplay muted loop playsinline preload="auto"></video>
     <button class="sound" id="sound" type="button">🔇 소리 켜기</button>
-    <span class="hint">👆 화면을 누르면 무료 상담 신청 페이지로 넘어갑니다</span>
+    <span class="cta">무료 상담 신청하기 →</span>
   </a>
 
 <script>
